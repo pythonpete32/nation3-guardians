@@ -1,7 +1,9 @@
 import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import type { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
 import { RainbowKitProvider, getDefaultWallets } from "@rainbow-me/rainbowkit";
+import { RainbowKitSiweNextAuthProvider } from "@rainbow-me/rainbowkit-siwe-next-auth";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -40,15 +42,15 @@ const wagmiClient = createClient({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider
-        chains={chains}
-        showRecentTransactions={true}
-        coolMode
-      >
-        <NextUIProvider>
-          <Component {...pageProps} />
-        </NextUIProvider>
-      </RainbowKitProvider>
+      <SessionProvider refetchInterval={0} session={pageProps.session}>
+        <RainbowKitSiweNextAuthProvider>
+          <RainbowKitProvider chains={chains}>
+            <NextUIProvider>
+              <Component {...pageProps} />
+            </NextUIProvider>
+          </RainbowKitProvider>
+        </RainbowKitSiweNextAuthProvider>
+      </SessionProvider>
     </WagmiConfig>
   );
 }
