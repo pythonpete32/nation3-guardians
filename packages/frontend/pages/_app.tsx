@@ -10,7 +10,22 @@ import {
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import { NextUIProvider } from "@nextui-org/react";
+import { NextUIProvider, createTheme } from "@nextui-org/react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+
+const darkTheme = createTheme({
+  type: "dark",
+  theme: {
+    colors: {}, // override dark theme colors
+  },
+});
+
+const lightTheme = createTheme({
+  type: "light",
+  theme: {
+    colors: {}, // optional
+  },
+});
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
@@ -54,9 +69,18 @@ function MyApp({ Component, pageProps }: AppProps) {
           getSiweMessageOptions={getSiweMessageOptions}
         >
           <RainbowKitProvider chains={chains}>
-            <NextUIProvider>
-              <Component {...pageProps} />
-            </NextUIProvider>
+            <NextThemesProvider
+              defaultTheme="light"
+              attribute="class"
+              value={{
+                light: lightTheme.className,
+                dark: darkTheme.className,
+              }}
+            >
+              <NextUIProvider>
+                <Component {...pageProps} />
+              </NextUIProvider>
+            </NextThemesProvider>
           </RainbowKitProvider>
         </RainbowKitSiweNextAuthProvider>
       </SessionProvider>

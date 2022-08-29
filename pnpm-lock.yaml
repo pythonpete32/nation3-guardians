@@ -18,6 +18,7 @@ importers:
       ethers: ^5.7.0
       next: ^12.1.6
       next-auth: ^4.10.3
+      next-themes: ^0.2.0
       react: ^18.1.0
       react-dom: ^18.1.0
       siwe: ^1.1.6
@@ -30,6 +31,7 @@ importers:
       ethers: 5.7.0
       next: 12.2.5_biqbaboplfbrettd7655fr4n2y
       next-auth: 4.10.3_biqbaboplfbrettd7655fr4n2y
+      next-themes: 0.2.0_3xcjr4wz26biff45sz3jtokgje
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       siwe: 1.1.6_ethers@5.7.0
@@ -3933,6 +3935,18 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       uuid: 8.3.2
+    dev: false
+
+  /next-themes/0.2.0_3xcjr4wz26biff45sz3jtokgje:
+    resolution: {integrity: sha512-myhpDL4vadBD9YDSHiewqvzorGzB03N84e+3LxCwHRlM/hiBOaW+UsKsQojQAzC7fdcJA0l2ppveXcYaVV+hxQ==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 12.2.5_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /next/12.2.5_biqbaboplfbrettd7655fr4n2y:
